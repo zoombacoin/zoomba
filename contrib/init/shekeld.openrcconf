@@ -1,0 +1,26 @@
+# /etc/conf.d/zoombad: config file for /etc/init.d/zoombad
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/zoomba/zoomba.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/zoombad"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/zoombad.pid"
+
+# Where to write zoombad data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/zoombad"
+
+# User and group to own zoombad process
+#BITCOIND_USER="zoomba"
+#BITCOIND_GROUP="zoomba"
+
+# Path to zoombad executable
+#BITCOIND_BIN="/usr/bin/zoombad"
+
+# Nice value to run zoombad under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Zoomba
+Comment=Zoomba P2P Cryptocurrency
+Comment[fr]=Zoomba, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Zoomba, eşten eşe kriptografik sanal para birimi
+Exec=zoomba-qt %u
+Terminal=false
+Type=Application
+Icon=zoomba128
+MimeType=x-scheme-handler/zoomba;
+Categories=Office;Finance;

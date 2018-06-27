@@ -1,0 +1,26 @@
+[Unit]
+Description=Zoomba's distributed currency daemon
+After=network.target
+
+[Service]
+User=zoomba
+Group=zoomba
+
+Type=forking
+PIDFile=/var/lib/zoombad/zoombad.pid
+
+ExecStart=/usr/bin/zoombad -daemon -pid=/var/lib/zoombad/zoombad.pid \
+          -conf=/etc/zoomba/zoomba.conf -datadir=/var/lib/zoombad
+
+ExecStop=-/usr/bin/zoomba-cli -conf=/etc/zoomba/zoomba.conf \
+         -datadir=/var/lib/zoombad stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
