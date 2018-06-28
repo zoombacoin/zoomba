@@ -44,8 +44,8 @@ Instructions: Homebrew
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/eastcoastcrypto/Zoomba.git
-        cd Zoomba
+        git clone https://github.com/zoombacoin/zoomba.git
+        cd zoomba
 
 2.  Build zoombad:
 
