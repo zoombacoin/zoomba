@@ -4,8 +4,8 @@ Shell script to install a [Zoomba Masternode](https://zoombacoin.com/) on a Linu
 
 ## Installation
 ```
-wget -q https://raw.githubusercontent.com/zoldur/Posq/master/posq_install.sh
-bash posq_install.sh
+wget -q https://raw.githubusercontent.com/zoombacoin/zoomba/master/zba_install.sh
+bash zba_install.sh
 ```
 ***
 
