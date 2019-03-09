@@ -1,8 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Zoomba developers
+// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2018-2019 The Zoomba developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -2154,18 +2154,18 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         if (nHeight < 200)
             return 0;
     }
-	
+
 	// 70% for Masternodes
 	if (nHeight <= 100 && nHeight >= 0) {
 	    ret = blockValue  / 100 * 0;
 	} else {
 		ret = blockValue  / 100 * 70;
-		
+
 	}
-	
+
     return ret;
 }
-	
+
 bool IsInitialBlockDownload()
 {
     LOCK(cs_main);
