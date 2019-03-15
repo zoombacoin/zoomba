@@ -2546,8 +2546,6 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                     coins->vout.resize(out.n + 1);
                 coins->vout[out.n] = undo.txout;
 
-                {
-                    LOCK(cs_mapstake);
                     {
                     LOCK(cs_mapstake);
                     // erase the spent input
@@ -3027,9 +3025,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (fTxIndex)
         if (!pblocktree->WriteTxIndex(vPos))
             return state.Abort("Failed to write transaction index");
-
-            {
-       LOCK(cs_mapstake);
 
        // add new entries
        {
