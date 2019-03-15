@@ -2548,8 +2548,11 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
 
                 {
                     LOCK(cs_mapstake);
+                    {
+                    LOCK(cs_mapstake);
                     // erase the spent input
                     mapStakeSpent.erase(out);
+                   }
                 }
             }
         }
@@ -3029,11 +3032,16 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
        LOCK(cs_mapstake);
 
        // add new entries
-       for (const CTransaction tx: block.vtx) {
-           if (tx.IsCoinBase())
-               continue;
-           for (const CTxIn in: tx.vin) {
-               mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
+       {
+        LOCK(cs_mapstake);
+
+        // add new entries
+        for (const CTransaction tx: block.vtx) {
+            if (tx.IsCoinBase())
+                continue;
+            for (const CTxIn in: tx.vin) {
+                mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
+              }
            }
        }
 
@@ -3043,6 +3051,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 it = mapStakeSpent.erase(it);
             } else {
                 it++;
+                  }
             }
        }
    }
