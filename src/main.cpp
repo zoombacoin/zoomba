@@ -3045,8 +3045,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 it = mapStakeSpent.erase(it);
             } else {
                 it++;
-                  }
-            }
+                }
        }
    }
 
