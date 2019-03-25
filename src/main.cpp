@@ -2551,7 +2551,6 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                     // erase the spent input
                     mapStakeSpent.erase(out);
                    }
-                }
             }
         }
     }
