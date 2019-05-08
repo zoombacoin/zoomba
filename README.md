@@ -1,27 +1,59 @@
-### Zoomba is a fork of [PIVX](https://github.com/PIVX-Project/PIVX) that forked [Dash](https://github.com/dashpay/dash) that forked [Bitcoin](https://github.com/bitcoin/bitcoinp)
+### Usage
 
+To build dependencies for the current arch+OS:
 
-# Zoomba Core integration/staging repository
+    make
 
+To build for another arch/OS:
 
-Zoomba(ZBA) is an open-source privacy focused digital
-currency based on Bitcoins blockchain technology, Dash’ Masternodes
-and Zerocoin’s Zerocash protocol, combining them to create a powerfully
-innovative technology. Zoomba is also powered by Blackcoin
-Proof-of-Stake 3.0 and Bitcoin core 0.10x code base using Quark
-hashing algorithm with a block time of just 60 seconds.
+    make HOST=host-platform-triplet
 
-A peer-to-peer digital currency that provides fast, zero cost payments to
-anywhere around the world without any third-party intervention. Zoomba
-is a fully decentralized global payment network allowing
-individuals to have full control of their finances.
+For example:
 
-Masternodes require a collateral of 3,000 ZBA and can be run on the
-Tor network for greater privacy. All transactions on the network are fully
-verifiable with a built-in blockchain explorer within the software itself. The
-reward ratio of staking to masternodes is 30:70.
+    make HOST=x86_64-w64-mingw32 -j4
 
+A prefix will be generated that's suitable for plugging into Bitcoin's
+configure. In the above example, a dir named x86_64-w64-mingw32 will be
+created. To use it for Bitcoin:
 
+    ./configure --prefix=`pwd`/depends/x86_64-w64-mingw32
 
+Common `host-platform-triplets` for cross compilation are:
 
+- `i686-w64-mingw32` for Win32
+- `x86_64-w64-mingw32` for Win64
+- `x86_64-apple-darwin11` for MacOSX
+- `arm-linux-gnueabihf` for Linux ARM 32 bit
+- `aarch64-linux-gnu` for Linux ARM 64 bit
+
+No other options are needed, the paths are automatically configured.
+
+Dependency Options:
+The following can be set when running make: make FOO=bar
+
+    SOURCES_PATH: downloaded sources will be placed here
+    BASE_CACHE: built packages will be placed here
+    SDK_PATH: Path where sdk's can be found (used by OSX)
+    FALLBACK_DOWNLOAD_PATH: If a source file can't be fetched, try here before giving up
+    NO_QT: Don't download/build/cache qt and its dependencies
+    NO_WALLET: Don't download/build/cache libs needed to enable the wallet
+    NO_UPNP: Don't download/build/cache packages needed for enabling upnp
+    DEBUG: disable some optimizations and enable more runtime checking
+    HOST_ID_SALT: Optional salt to use when generating host package ids
+    BUILD_ID_SALT: Optional salt to use when generating build package ids
+
+If some packages are not built, for example `make NO_WALLET=1`, the appropriate
+options will be passed to bitcoin's configure. In this case, `--disable-wallet`.
+
+Additional targets:
+
+    download: run 'make download' to fetch all sources without building them
+    download-osx: run 'make download-osx' to fetch all sources needed for osx builds
+    download-win: run 'make download-win' to fetch all sources needed for win builds
+    download-linux: run 'make download-linux' to fetch all sources needed for linux builds
+
+### Other documentation
+
+- [description.md](description.md): General description of the depends system
+- [packages.md](packages.md): Steps for adding packages
 
