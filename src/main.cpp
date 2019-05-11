@@ -2551,7 +2551,6 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                     // erase the spent input
                     mapStakeSpent.erase(out);
                    }
-                }
             }
         }
     }
@@ -3046,10 +3045,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 it = mapStakeSpent.erase(it);
             } else {
                 it++;
-                  }
-            }
-       }
-   }
+                }
+        }
 
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
@@ -5600,9 +5597,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
             remoteAddr);
 
-            int64_t nTimeOffset = nTime - GetTime();
-            pfrom->nTimeOffset = nTimeOffset;
-            AddTimeData(pfrom->addr, nTimeOffset);
+            AddTimeData(pfrom->addr, nTime);
     }
 
 
